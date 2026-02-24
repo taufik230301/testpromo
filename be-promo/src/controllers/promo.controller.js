@@ -3,7 +3,6 @@ const pool = require("../../config/db");
 // GET ALL
 exports.getAllPromos = async (req, res) => {
   try {
-    console.log("Fetching all promos...");
     const result = await pool.query("SELECT * FROM promos ORDER BY id DESC");
     res.json(result.rows);
   } catch (error) {
@@ -70,7 +69,7 @@ exports.updatePromo = async (req, res) => {
         image,
         expiry_date,
         voucher_code,
-        terms,
+        JSON.stringify(terms),
         req.params.id,
       ]
     );
